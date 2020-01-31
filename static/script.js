@@ -80,4 +80,21 @@ function getState(){
 window.setInterval(getState,1000);
 
 
-// Script pour controler les volets 
+/* 
+Script pour controler les volets 
+Les chemins : 
+    - /blindDown/12
+    - /blindUp/12
+*/
+
+function blindUp(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET",url+"blindUp/12");
+    xhttp.send();
+}
+
+function blindDown(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET",url+"blindDown/12");
+    xhttp.send();
+}
