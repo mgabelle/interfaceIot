@@ -47,7 +47,7 @@ function getState(){
     xhttp.open("GET",urlState+"11");
     xhttp.onload = function() {
         var el = "";
-        console.log(this.responseText + " => type:"+typeof response);
+        // console.log(this.responseText + " => type:"+typeof response);
         if(this.responseText == "1"){
             el = "ALLUMEE";
         } else {
@@ -65,7 +65,7 @@ function getState(){
     xhttp.onload = function() {
         var el = "";
         var response = this.responseText;
-        console.log(response + " => type :"+typeof response);
+        // console.log(response + " => type :"+typeof response);
         if(response == "1"){
             el = "ALLUMEE";
         } else {
@@ -77,7 +77,7 @@ function getState(){
     xhttp.send();
 }
 
-window.setInterval(getState,1000);
+window.setInterval(getState,3000);
 
 
 /* 
