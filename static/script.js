@@ -37,6 +37,19 @@ function useApi(state,light){
     xhttp.send();
 }
 
+// lightAll
+function lightAllOn(){
+    var xhttp =new XMLHttpRequest();
+    xhttp.open("GET",url+"lightOn/11/13");
+    xhttp.send();
+}
+
+function lightAllOff(){
+    var xhttp =new XMLHttpRequest();
+    xhttp.open("GET",url+"lightOff/11/13");
+    xhttp.send();
+}
+
 // Get state of the light
 var urlState = url + "lightState/";
 
