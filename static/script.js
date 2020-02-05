@@ -1,6 +1,6 @@
 console.log('script.js loaded');
 // This script is for API
-var url = "http://10.42.0.237:5000/" //Main --> URL
+var url = "http://10.42.0.123:5000/" //Main --> URL
 
 /*
 Light 11 == Cuisine
