@@ -50,7 +50,7 @@ function lightAllOff(){
     xhttp.send();
 }
 
-// Get state of the light
+// Get state of the light && blind
 var urlState = url + "lightState/";
 
 function getState(){
@@ -88,9 +88,26 @@ function getState(){
         document.getElementById('chambre').innerHTML = "La lumière est " + el;
     }
     xhttp.send();
+
+    //volets
+    var urlBlindState = url + "blindState/12";
+    xhttp.open("GET",urlBlindState);
+    xhttp.onload = function() {
+        var el = "";
+        var response = this.responseText;
+        // console.log(response + " => type :"+typeof response);
+        if(response == "1"){
+            el = "OUVERT";
+        } else {
+            el = "FERMÉ";
+        }
+
+        document.getElementById('blind-state').innerHTML = "La volet est " + el;
+    }
+    xhttp.send();
 }
 
-window.setInterval(getState,3000);
+// window.setInterval(getState,3000);
 
 
 /* 
@@ -100,14 +117,15 @@ Les chemins :
     - /blindUp/12
 */
 
-function blindUp(){
+function blindUp(number){
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET",url+"blindUp/12");
+    xhttp.open("GET",url+"blindUp/"+number);
     xhttp.send();
 }
 
 function blindDown(){
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET",url+"blindDown/12");
+    xhttp.open("GET",url+"blindDown/"+number);
     xhttp.send();
 }
+

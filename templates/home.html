@@ -1,104 +1,101 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Internet Of Trolls</title>
-        <!-- BOOTSTRAP CSS -->
-        <script src="static/script.js"></script>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
-        <style>
-            /* img {
-                margin: a;
-                align-self: auto;
-                width:150px;
-                height:400px;
-            } */
+<head>
+	<meta charset="utf-8"/>
+	<title>Internet Of Trolls</title>
+	<script src="static/script.js"></script>
+	<link rel="stylesheet" 
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+	crossorigin="anonymous">
+	<style>
+		div {
+			text-align: center;
+		}
+	</style>
+</head>
+<body style="background-color: LightGray">
+	<header style="margin-bottom: 50px; background-color: Black; color: white">
+		<div class="container">
+			<div class="page-header">
+				<h1>INTERNET OF TROLLS</h1>
+				<h2>Bienvenue chez vous !</h2>
+			</div>     
+		</div>
+	</header>
 
+	<div class="container">
+		<div class="row">
+			<!-- <div class="col-sm-1">
+			</div> -->
 
+			<!-- lumière -->
+			<div class="col-sm-4">
+				<h3>Lumières</h3>
+				<img src="../static/bulb.png" alt="Ampoules de lumière" style="max-width: 100%">
+				<div class="container" style="margin-bottom: 20px">
+					<div class="row">
+						<!-- cuisine -->
+						<div class="col">
+							<h4>Cuisine</h4>
+							<button type="button" class="btn btn-warning" onclick="useApi('on',11)">Allumer</button>
+							<button type="button" class="btn btn-dark" onclick="useApi('off',11)">Éteindre</button> 
+							<p class="card-text" id="cuisine">La lumière est éteinte</p>
 
-            body {
-                font-family: "Trebuchet MS", Helvetica, sans-serif;
-                background-image:url('static/iot.jpg');
-                background-repeat: no-repeat;   
-                background-size: cover;
-                background-attachment: fixed;
-            }
+						</div>
+						<div class="col">
+							<h4>Chambre</h4>
+							<button type="button" class="btn btn-warning" onclick="useApi('on',13)">Allumer</button>
+							<button type="button" class="btn btn-dark" onclick="useApi('off',13)">Éteindre</button>
+							<p class="card-text" id="chambre">La lumière est éteinte</p>
+						</div>
+					</div>
+				</div>
+				<button type="button" class="btn btn-warning" onclick="lightAllOn()">Tout allumer</button>
+				<button type="button" class="btn btn-dark" onclick="lightAllOff()">Tout éteindre</button>
+			</div>
 
-            .jumbotron {
-                /* margin: 0px 100px 10px; */ 
-                margin-bottom: 1em;
-                padding-top: 0.5em;
-                padding-bottom: 0.5em;
-                font-family: 'Sigmar One', cursive;
-                background-color:seashell
-            }
+			<!-- volets -->
+			<div class="col-sm-4">
+				<h3>Stores</h3>
+				<img src="../static/blinds.png" alt="Volets" style="max-width: 100%">
+				<div class="container">
+					<div class="row">
+						<!-- cuisine -->
+						<div class="col">
+							<h4>Cuisine</h4>
+                            <button type="button" class="btn btn-success" onclick="">Ouvert</button>
+							<button type="button" class="btn btn-danger" onclick="">Fermé</button>
+						</div>
+						<div class="col">
+							<h4>Chambre</h4>
+							<button type="button" class="btn btn-success" onclick="blindUp(12)">Ouvert</button>
+							<button type="button" class="btn btn-danger" onclick="blindDown(12)">Fermé</button>
+							<p class="card-text" id="blind-state">Le volet est FERMÉ</p>
+						</div>
+					</div>
+				</div>
+			</div>
 
-            .card {
-                width: 90%;
-                /* border: 5px solid black; */
-                padding: 1em;
-                align-content: center;
-                text-align: center;
-                /* outline-style: outset; */
-                outline: outset 10px rgb(49, 34, 34);
-                background-color:rgb(227, 241, 241);
-            }
-
-            /* .card * {
-                padding: 1em;
-            } */
-            
-            
-        </style>
-    </head>
-    <body>
-        <div class="jumbotron">
-            <h1 style="text-align: center;">Welcome to the internet of Trolls </h1>
-        </div>
-        <!-- Light Control -->
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div id="light" class='card'>
-                        <img src="static/bulb.jpeg" class="card-img-top">
-                        <div class="card-body">
-                            <h3 class="card-title">Control The Lights</h3>
-                            <!-- Light 1 -->
-                            <h5>Cuisine
-                                <button type="button" class="btn btn-warning" onclick="useApi('on',11)">On</button>
-                                <button type="button" class="btn btn-dark" onclick="useApi('off',11)">Off</button>    
-                            </h5>
-                            <p class="card-text" id="cuisine">La lumière est ETEINTE</p>
-                            
-                            <!-- Light 2 -->
-                            <h5>Chambre 
-                                <button type="button" class="btn btn-warning" onclick="useApi('on',13)">On</button>
-                                <button type="button" class="btn btn-dark" onclick="useApi('off',13)">Off</button>
-                            </h5>
-                            <p class="card-text" id="chambre">La lumière est ETEINTE</p>
-                            <button type="button" class="btn btn-primary" onclick="lightAllOn()">Allumer toutes les lumières</button>
-                            <button type="button" class="btn btn-secondary" onclick="lightAllOff()">Éteindre toutes les lumières</button>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="col">
-                    <div id="blind" class='card'>
-                        <img src="static/blind.jpeg" class="card-img-top">
-                        <h3 class="card-title">Control The Blinds</h3>
-                        <button type="button" class="btn btn-success" onclick="blindUp()">Up</button>
-                        <button type="button" class="btn btn-danger" onclick="blindDown()">Down</button>
-                        <p class="card-text" id="blind-state">Le volet est ...</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        
-        <!-- BOOTSTRAP JS -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    </body>
+			<!-- capteur -->
+			<div class="col-sm-4">
+				<h3>Capteur de luminosité</h3>
+				<img src="../static/sun.png" alt="Luminosité" style="max-width: 100%">
+				<h4>État de la luminosité</h4>
+				<p class="card-text" id="brightness-state">Il fait jour/nuit.</p>
+			</div>
+		</div>
+	</div>
+	
+	<!-- BOOTSTRAP JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+	integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" 
+	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+	crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" 
+	crossorigin="anonymous"></script>
+</body>
 </html>
