@@ -107,11 +107,31 @@ function getStateBlind(number){
     }
     xhttp.send();
 }
+
+function getLumiState(number){
+    var xhttp = new XMLHttpRequest();
+    var urlLumiState = url + "lumiState/"+number;
+    console.log(urlLumiState)
+    xhttp.open("GET",urlLumiState);
+    xhttp.onload = function() {
+        var el = "";
+        console.log(this.responseText + " => LUMI "+number);
+        if(this.responseText == "1"){
+            el = "JOUR";
+        } else {
+            el = "NUIT";
+        }
+
+        document.getElementById('lumi-state').innerHTML = "Il fait " + el;
+    }
+    xhttp.send();
+}
     
 
-// window.setInterval(()=>getStateLight(11),3000);
-// window.setInterval(()=>getStateLight(13),3000);
-// window.setInterval(()=>getStateBlind(12),3000);
+window.setInterval(()=>getStateLight(11),3000);
+window.setInterval(()=>getStateLight(13),3000);
+window.setInterval(()=>getStateBlind(12),3000);
+window.setInterval(()=>getLumiState(5),3000);
 
 
 /* 
