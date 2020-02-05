@@ -6,45 +6,95 @@
         <!-- BOOTSTRAP CSS -->
         <script src="static/script.js"></script>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Sigmar+One&display=swap" rel="stylesheet">
+        <style>
+            /* img {
+                margin: a;
+                align-self: auto;
+                width:150px;
+                height:400px;
+            } */
+
+
+
+            body {
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                background-image:url('static/iot.jpg');
+                background-repeat: no-repeat;   
+                background-size: cover;
+                background-attachment: fixed;
+            }
+
+            .jumbotron {
+                /* margin: 0px 100px 10px; */ 
+                margin-bottom: 1em;
+                padding-top: 0.5em;
+                padding-bottom: 0.5em;
+                font-family: 'Sigmar One', cursive;
+                background-color:seashell
+            }
+
+            .card {
+                width: 90%;
+                /* border: 5px solid black; */
+                padding: 1em;
+                align-content: center;
+                text-align: center;
+                /* outline-style: outset; */
+                outline: outset 10px rgb(49, 34, 34);
+                background-color:rgb(227, 241, 241);
+            }
+
+            /* .card * {
+                padding: 1em;
+            } */
+            
+            
+        </style>
     </head>
     <body>
-        <h1>Welcome to the internet of Trolls</h1>
+        <div class="jumbotron">
+            <h1 style="text-align: center;">Welcome to the internet of Trolls </h1>
+        </div>
         <!-- Light Control -->
-        <div class="row">
-            <div class="col-sm-6">
-                <div id="light" class='card'  style="width: 20rem;">
-                    <img src="static/bulb.jpeg" style="width:250px;height:250px;" class="card-img-top">
-                    <div class="card-body">
-                        <h3 class="card-title">Control The Lights</h3>
-                        <!-- Light 1 -->
-                        <h5>Cuisine
-                            <button type="button" class="btn btn-warning" onclick="useApi('on',11)">On</button>
-                            <button type="button" class="btn btn-dark" onclick="useApi('off',11)">Off</button>    
-                        </h5>
-                        <p class="card-text" id="cuisine">La lumière est ETEINTE</p>
-                        
-                        <!-- Light 2 -->
-                        <h5>Chambre 
-                            <button type="button" class="btn btn-warning" onclick="useApi('on',13)">On</button>
-                            <button type="button" class="btn btn-dark" onclick="useApi('off',13)">Off</button>
-                        </h5>
-                        <p class="card-text" id="chambre">La lumière est ETEINTE</p>
-                        <button type="button" class="btn btn-primary" onclick="lightAllOn()">Allumer toutes les lumières</button>
-                        <button type="button" class="btn btn-secondary" onclick="lightAllOff()">Éteindre toutes les lumières</button>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="light" class='card'>
+                        <img src="static/bulb.jpeg" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title">Control The Lights</h3>
+                            <!-- Light 1 -->
+                            <h5>Cuisine
+                                <button type="button" class="btn btn-warning" onclick="useApi('on',11)">On</button>
+                                <button type="button" class="btn btn-dark" onclick="useApi('off',11)">Off</button>    
+                            </h5>
+                            <p class="card-text" id="cuisine">La lumière est ETEINTE</p>
+                            
+                            <!-- Light 2 -->
+                            <h5>Chambre 
+                                <button type="button" class="btn btn-warning" onclick="useApi('on',13)">On</button>
+                                <button type="button" class="btn btn-dark" onclick="useApi('off',13)">Off</button>
+                            </h5>
+                            <p class="card-text" id="chambre">La lumière est ETEINTE</p>
+                            <button type="button" class="btn btn-primary" onclick="lightAllOn()">Allumer toutes les lumières</button>
+                            <button type="button" class="btn btn-secondary" onclick="lightAllOff()">Éteindre toutes les lumières</button>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col">
+                    <div id="blind" class='card'>
+                        <img src="static/blind.jpeg" class="card-img-top">
+                        <h3 class="card-title">Control The Blinds</h3>
+                        <button type="button" class="btn btn-success" onclick="blindUp()">Up</button>
+                        <button type="button" class="btn btn-danger" onclick="blindDown()">Down</button>
+                        <p class="card-text" id="blind-state">Le volet est ...</p>
                     </div>
                 </div>
             </div>
-
-            <div class="col-sm-6">
-                <div id="blind" class='card' style="width: 20rem;">
-                    <img src="static/blind.jpeg" style="width: 250px;height: 250px;" class="card-img-top">
-                    <h3 class="card-title">Control The Blinds</h3>
-                    <button type="button" class="btn btn-success" onclick="blindUp()">Up</button>
-                    <button type="button" class="btn btn-danger" onclick="blindDown()">Down</button>
-                    <p class="card-text" id="blind-state">Le volet est ...</p>
-                </div>
-            </div>
         </div>
+        
         
         <!-- BOOTSTRAP JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
