@@ -176,7 +176,18 @@ function blindDown(number){
 // Mode automatique
 var autom = false;
 
-var changeMode = () => {autom=!(autom)};
+$("#desactiveAuto").hide();
+
+var changeMode = (bool) => {
+    autom=bool;
+    if(autom){
+        $("#activeAuto").hide();
+        $("#desactiveAuto").show();
+    } else {
+        $("#activeAuto").show();
+        $("#desactiveAuto").hide();
+    }
+}
 
 var isUp = () => {
     if(blind32=="1" || blind12=="1"){
