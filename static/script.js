@@ -51,49 +51,52 @@ function lightAllOff(){
 }
 
 // Get state of the light && blind
-const urlState = url + "lightState/";
+var urlState = url + "lightState/";
 
-function getState(){
+function getStateLight(number){
     var xhttp = new XMLHttpRequest();
 
     // cuisine
-    xhttp.open("GET",urlState+"11");
+    xhttp.open("GET",urlState+number);
     xhttp.onload = function() {
         var el = "";
-        console.log(this.responseText + " => type:"+typeof response);
+        console.log(this.responseText + " => light "+number);
         if(this.responseText == "1"){
             el = "ALLUMÉE";
         } else {
             el = "ÉTEINTE";
         }
 
-        document.getElementById('cuisine').innerHTML = "La lumière est " + el;
+        document.getElementById('light-'+number).innerHTML = "La lumière est " + el;
     }
     xhttp.send();
 
     var xhttp = new XMLHttpRequest();
+}
+    // // chambre
+    // xhttp.open("GET",urlState+"13");
+    // xhttp.onload = function() {
+    //     var el = "";
+    //     console.log(this.responseText + " => 13");
+    //     if(this.responseText == "1"){
+    //         el = "ALLUMEE";
+    //     } else {
+    //         el = "ETEINTE";
+    //     }
 
-    // chambre
-    xhttp.open("GET",urlState+"13");
-    xhttp.onload = function() {
-        var el = "";
-        console.log(this.responseText + " => type :"+typeof response);
-        if(this.responseText == "1"){
-            el = "ALLUMEE";
-        } else {
-            el = "ETEINTE";
-        }
-
-        document.getElementById('chambre').innerHTML = "La lumière est " + el;
-    }
-    xhttp.send();
+    //     document.getElementById('chambre').innerHTML = "La lumière est " + el;
+    // }
+    // xhttp.send();
 
     //volets
-    var urlBlindState = url + "blindState/12";
+function getStateBlind(number){
+    var xhttp = new XMLHttpRequest();
+    var urlBlindState = url + "blindState/"+number;
+    console.log(urlBlindState)
     xhttp.open("GET",urlBlindState);
     xhttp.onload = function() {
         var el = "";
-        console.log(this.responseText + " => type :"+typeof response);
+        console.log(this.responseText + " => BLIND "+number);
         if(this.responseText == "1"){
             el = "OUVERT";
         } else {
@@ -104,8 +107,11 @@ function getState(){
     }
     xhttp.send();
 }
+    
 
-// window.setInterval(getState,3000);
+// window.setInterval(()=>getStateLight(11),3000);
+// window.setInterval(()=>getStateLight(13),3000);
+// window.setInterval(()=>getStateBlind(12),3000);
 
 
 /* 
