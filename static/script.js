@@ -40,18 +40,18 @@ function useApi(state,light){
 // lightAll
 function lightAllOn(){
     var xhttp =new XMLHttpRequest();
-    xhttp.open("GET",url+"lightOn/11/13");
+    xhttp.open("GET",url+"lightAllOn/11/13");
     xhttp.send();
 }
 
 function lightAllOff(){
     var xhttp =new XMLHttpRequest();
-    xhttp.open("GET",url+"lightOff/11/13");
+    xhttp.open("GET",url+"lightAllOff/11/13");
     xhttp.send();
 }
 
 // Get state of the light && blind
-var urlState = url + "lightState/";
+const urlState = url + "lightState/";
 
 function getState(){
     var xhttp = new XMLHttpRequest();
@@ -60,11 +60,11 @@ function getState(){
     xhttp.open("GET",urlState+"11");
     xhttp.onload = function() {
         var el = "";
-        // console.log(this.responseText + " => type:"+typeof response);
+        console.log(this.responseText + " => type:"+typeof response);
         if(this.responseText == "1"){
-            el = "ALLUMEE";
+            el = "ALLUMÉE";
         } else {
-            el = "ETEINTE";
+            el = "ÉTEINTE";
         }
 
         document.getElementById('cuisine').innerHTML = "La lumière est " + el;
@@ -73,13 +73,12 @@ function getState(){
 
     var xhttp = new XMLHttpRequest();
 
-    // cuisine
+    // chambre
     xhttp.open("GET",urlState+"13");
     xhttp.onload = function() {
         var el = "";
-        var response = this.responseText;
-        // console.log(response + " => type :"+typeof response);
-        if(response == "1"){
+        console.log(this.responseText + " => type :"+typeof response);
+        if(this.responseText == "1"){
             el = "ALLUMEE";
         } else {
             el = "ETEINTE";
@@ -94,9 +93,8 @@ function getState(){
     xhttp.open("GET",urlBlindState);
     xhttp.onload = function() {
         var el = "";
-        var response = this.responseText;
-        // console.log(response + " => type :"+typeof response);
-        if(response == "1"){
+        console.log(this.responseText + " => type :"+typeof response);
+        if(this.responseText == "1"){
             el = "OUVERT";
         } else {
             el = "FERMÉ";
@@ -123,7 +121,7 @@ function blindUp(number){
     xhttp.send();
 }
 
-function blindDown(){
+function blindDown(number){
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET",url+"blindDown/"+number);
     xhttp.send();
