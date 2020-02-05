@@ -176,7 +176,10 @@ function blindDown(number){
 // Mode automatique
 var autom = false;
 
-$("#desactiveAuto").hide();
+$(document).ready(function(){
+    $("#desactiveAuto").hide();
+});
+
 
 var changeMode = (bool) => {
     autom=bool;
