@@ -64,16 +64,16 @@
 						<!-- cuisine -->
 						<div class="col">
 							<h4>Cuisine</h4>
-                            <button type="button" class="btn btn-success" onclick="">Ouvert</button>
-							<button type="button" class="btn btn-danger" onclick="">Fermé</button>
-							<p class="card-text" id="blind-state-chambre">Le volet est FERMÉ</p>
+                            <button type="button" class="btn btn-success" onclick="blindUp(32)">Ouvert</button>
+							<button type="button" class="btn btn-danger" onclick="blindDown(32)">Fermé</button>
+							<p class="card-text" id="blind-state-32">Le volet est FERMÉ</p>
 						</div>
 						<!-- chambre -->
 						<div class="col">
 							<h4>Chambre</h4>
 							<button type="button" class="btn btn-success" onclick="blindUp(12)">Ouvert</button>
 							<button type="button" class="btn btn-danger" onclick="blindDown(12)">Fermé</button>
-							<p class="card-text" id="blind-state">Le volet est FERMÉ</p>
+							<p class="card-text" id="blind-state-12">Le volet est FERMÉ</p>
 						</div>
 					</div>
 				</div>
@@ -85,6 +85,14 @@
 				<img src="../static/sun.png" alt="Luminosité" style="max-width: 100%">
 				<h4>État de la luminosité</h4>
 				<p class="card-text" id="lumi-state">Il fait jour/nuit.</p>
+			</div>
+
+			<!-- mode Auto -->
+			<div class="col-sm-4">
+				<h3>Mode Auto</h3>
+				<div class="container">
+					<button type="button" class="btn btn-success" onclick="changeMode()">Activer mode Automatique</button>
+				</div>
 			</div>
 		</div>
 	</div>

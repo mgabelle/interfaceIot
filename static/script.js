@@ -89,6 +89,10 @@ function getStateLight(number){
     // xhttp.send();
 
     //volets
+
+var blind12 = "";
+var blind32 = "";
+
 function getStateBlind(number){
     var xhttp = new XMLHttpRequest();
     var urlBlindState = url + "blindState/"+number;
@@ -97,16 +101,27 @@ function getStateBlind(number){
     xhttp.onload = function() {
         var el = "";
         console.log(this.responseText + " => BLIND "+number);
+        let result = this.responseText;
+        if(number ==12){
+            blind12=result;
+            console.log("OK");
+        }
+        if(number == 32){
+            blind32=result;
+            console.log("ok");
+        }
         if(this.responseText == "1"){
             el = "OUVERT";
         } else {
             el = "FERMÉ";
         }
 
-        document.getElementById('blind-state').innerHTML = "La volet est " + el;
+        document.getElementById('blind-state-'+number).innerHTML = "La volet est " + el;
     }
     xhttp.send();
 }
+
+var lumi = "";
 
 function getLumiState(number){
     var xhttp = new XMLHttpRequest();
@@ -114,24 +129,29 @@ function getLumiState(number){
     console.log(urlLumiState)
     xhttp.open("GET",urlLumiState);
     xhttp.onload = function() {
-        var el = "";
-        console.log(this.responseText + " => LUMI "+number);
-        if(this.responseText == "1"){
-            el = "JOUR";
-        } else {
-            el = "NUIT";
-        }
-
-        document.getElementById('lumi-state').innerHTML = "Il fait " + el;
+        lumi = this.responseText;
     }
     xhttp.send();
 }
-    
+
+function changeLumi(number){
+    var el = "";
+    console.log("lumi = "+lumi + " => LUMI "+number);
+    if(lumi == "1"){
+        el = "JOUR";
+    } else {
+        el = "NUIT";
+    }
+
+    document.getElementById('lumi-state').innerHTML = "Il fait " + el;
+}   
 
 window.setInterval(()=>getStateLight(11),3000);
 window.setInterval(()=>getStateLight(13),3000);
 window.setInterval(()=>getStateBlind(12),3000);
+window.setInterval(()=>getStateBlind(32),3000);
 window.setInterval(()=>getLumiState(5),3000);
+window.setInterval(()=>changeLumi(),3000);
 
 
 /* 
@@ -153,3 +173,42 @@ function blindDown(number){
     xhttp.send();
 }
 
+// Mode automatique
+var autom = false;
+
+var changeMode = () => {autom=!(autom)};
+
+var isUp = () => {
+    if(blind32=="1" || blind12=="1"){
+        return true;
+    }  else {
+        return false;
+    }
+}
+
+var isDown = () => {
+    if(blind32=="0" || blind12=="0"){
+        return true;
+    }  else {
+        return false;
+    }
+}
+
+function modeAuto(){
+    if(autom){
+        // Si nuit + volets up alors on descend les rideaux et on allume la lumièreALL
+        if(lumi=="0" && isUp()){
+            lightAllOn();
+            blindDown(12);
+            blindDown(32);
+        } else if (lumi="1" && isDown()){
+            lightAllOff();
+            blindUp(12);
+            blindUp(32);
+        }
+    } else {
+        console.log("Mode auto desactivé");
+    }
+}
+
+window.setInterval(modeAuto,3000);
