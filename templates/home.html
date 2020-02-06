@@ -15,95 +15,103 @@
 		div {
 			text-align: center;
 		}
+
+		h3 {
+            font-size: 2em;
+            font-weight: bold;
+        } 
 	</style>
 </head>
 <body style="background-color: LightGray">
-	<header style="margin-bottom: 50px; background-color: Black; color: white">
-		<div class="container">
-			<div class="page-header">
-				<h1>INTERNET OF TROLLS</h1>
-				<h2>Bienvenue chez vous !</h2>
-			</div>     
-		</div>
-	</header>
+    <header style="margin-bottom: 40px; background-color: Black; color: white">
+        <div class="container">
+            <div class="page-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4" style="text-align: right;">
+                            <img src="../static/troll.png" style="height: 100px;">
+                        </div>
+                        <div class="col-sm" style="text-align: left; vertical-align: middle;">
+                            <h1>INTERNET OF TROLLS</h1>
+                            <h2>Bienvenue chez vous !</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-	<div class="container">
-		<div class="row">
-			<!-- <div class="col-sm-1">
-			</div> -->
+    <div class="container">
+        <!-- mode Auto -->
+        <div class="col-sm" style="margin-bottom: 50px;">
+            <h3>
+                Mode Auto
+                <button id="activeAuto" type="button" class="btn btn-success" onclick="changeMode(true)">On</button>
+                <button id="desactiveAuto" type="button" class="btn btn-danger" onclick="changeMode(false)">Off</button>
+            </h3>
 
-			<!-- lumière -->
-			<div class="col-sm-4">
-				<h3>Lumières</h3>
-				<img src="../static/bulb.png" alt="Ampoules de lumière" style="max-width: 100%">
-				<div class="container" style="margin-bottom: 20px">
-					<div class="row">
-						<!-- cuisine -->
-						<div class="col">
-							<h4>Cuisine</h4>
-							<button type="button" class="btn btn-warning" onclick="useApi('on',11)">Allumer</button>
-							<button type="button" class="btn btn-dark" onclick="useApi('off',11)">Éteindre</button> 
-							<p class="card-text" id="light-11">La lumière est ÉTEINTE</p>
+        </div>
+        <div class="row">
+            <!-- lumière -->
+            <div class="col-sm-4" style="border-right: solid silver;">
+                <h3>Lumières</h3>
+                <img src="../static/bulb.png" alt="Ampoules de lumière" style="max-width: 100%">
+                <div class="container" style="margin-bottom: 20px">
+                    <div class="row">
+                        <!-- cuisine -->
+                        <div class="col">
+                            <h4>Cuisine</h4>
+                            <button type="button" class="btn btn-warning" onclick="useApi('on',11)">Allumer</button>
+                            <button type="button" class="btn btn-dark" onclick="useApi('off',11)">Éteindre</button>
+                            <p class="card-text" id="light-11">La lumière est ÉTEINTE</p>
 
-						</div>
-						<div class="col">
-							<h4>Chambre</h4>
-							<button type="button" class="btn btn-warning" onclick="useApi('on',13)">Allumer</button>
-							<button type="button" class="btn btn-dark" onclick="useApi('off',13)">Éteindre</button>
-							<p class="card-text" id="light-13">La lumière est ÉTEINTE</p>
-						</div>
-					</div>
-				</div>
-				<button type="button" class="btn btn-warning" onclick="lightAllOn()">Tout allumer</button>
-				<button type="button" class="btn btn-dark" onclick="lightAllOff()">Tout éteindre</button>
-			</div>
+                        </div>
+                        <div class="col">
+                            <h4>Chambre</h4>
+                            <button type="button" class="btn btn-warning" onclick="useApi('on',13)">Allumer</button>
+                            <button type="button" class="btn btn-dark" onclick="useApi('off',13)">Éteindre</button>
+                            <p class="card-text" id="light-13">La lumière est ÉTEINTE</p>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btn btn-warning" onclick="lightAllOn()">Tout allumer</button>
+                <button type="button" class="btn btn-dark" onclick="lightAllOff()">Tout éteindre</button>
+            </div>
 
-			<!-- volets -->
-			<div class="col-sm-4">
-				<h3>Stores</h3>
-				<img src="../static/blinds.png" alt="Volets" style="max-width: 100%">
-				<div class="container">
-					<div class="row">
-						<!-- cuisine -->
-						<div class="col">
-							<h4>Cuisine</h4>
+            <!-- volets -->
+            <div class="col-sm-4" style="border-right: solid silver;">
+                <h3>Stores</h3>
+                <img src="../static/blinds.png" alt="Volets" style="max-width: 100%">
+                <div class="container">
+                    <div class="row">
+                        <!-- cuisine -->
+                        <div class="col">
+                            <h4>Cuisine</h4>
                             <button type="button" class="btn btn-success" onclick="blindUp(32)">Ouvert</button>
-							<button type="button" class="btn btn-danger" onclick="blindDown(32)">Fermé</button>
-							<p class="card-text" id="blind-state-32">Le volet est FERMÉ</p>
-						</div>
-						<!-- chambre -->
-						<div class="col">
-							<h4>Chambre</h4>
-							<button type="button" class="btn btn-success" onclick="blindUp(12)">Ouvert</button>
-							<button type="button" class="btn btn-danger" onclick="blindDown(12)">Fermé</button>
-							<p class="card-text" id="blind-state-12">Le volet est FERMÉ</p>
-						</div>
+                            <button type="button" class="btn btn-danger" onclick="blindDown(32)">Fermé</button>
+                            <p class="card-text" id="blind-state-32">Le volet est FERMÉ</p>
+                        </div>
+                        <!-- chambre -->
+                        <div class="col">
+                            <h4>Chambre</h4>
+                            <button type="button" class="btn btn-success" onclick="blindUp(12)">Ouvert</button>
+                            <button type="button" class="btn btn-danger" onclick="blindDown(12)">Fermé</button>
+                            <p class="card-text" id="blind-state-12">Le volet est FERMÉ</p>
+                        </div>
 					</div>
-				</div>
-				<button type="button" class="btn btn-success" onclick="blindAllOn()">Tout allumer</button>
+					<button type="button" class="btn btn-success" onclick="blindAllOn()">Tout allumer</button>
 				<button type="button" class="btn btn-danger" onclick="blindAllDown()">Tout éteindre</button>
-			</div>
+                </div>
+            </div>
 
-			<!-- capteur -->
-			<div class="col-sm-4">
-				<h3>Capteur de luminosité</h3>
-				<img src="../static/sun.png" alt="Luminosité" style="max-width: 100%">
-				<h4>État de la luminosité</h4>
-				<p class="card-text" id="lumi-state">Il fait jour/nuit.</p>
-			</div>
-		</div>
-	</div>
-
-	<div class="container">
-		<nav class="navbar fixed-bottom"  style="background-color: black; color: white;">
-			<ul class="navbar-nav" style="margin-left: 45%; margin-right: 55%;">
-				<li class="nav-item">
-					<button id="activeAuto" type="button" class="btn btn-success" onclick="changeMode(true)">Automatique</button>
-					<button id="desactiveAuto" type="button" class="btn btn-info" onclick="changeMode(false)">Manuel</button>
-					</li>
-			</ul>
-		</nav>
-	</div>
+            <!-- capteur -->
+            <div class="col-sm-4">
+                <h3>État de la luminosité</h3>
+                <img src="../static/sun.png" alt="Luminosité" style="max-width: 100%">
+                <p class="card-text" id="lumi-state">Il fait jour/nuit.</p>
+            </div>
+        </div>
+    </div> 
 
 	<!-- BOOTSTRAP JS -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
