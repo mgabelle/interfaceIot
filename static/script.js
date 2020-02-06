@@ -166,6 +166,16 @@ function blindDown(number){
     xhttp.send();
 }
 
+function blindAllOn(){
+    blindUp(12);
+    blindUp(32);
+}
+
+function blindAllDown(){
+    blindDown(12);
+    blindDown(32);
+}
+
 // Mode automatique
 var autom = false;
 
