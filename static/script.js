@@ -146,13 +146,6 @@ function changeLumi(number){
     document.getElementById('lumi-state').innerHTML = "Il fait " + el;
 }   
 
-window.setInterval(()=>getStateLight(11),3000);
-window.setInterval(()=>getStateLight(13),3000);
-window.setInterval(()=>getStateBlind(12),3000);
-window.setInterval(()=>getStateBlind(32),3000);
-window.setInterval(()=>getLumiState(5),3000);
-window.setInterval(()=>changeLumi(),3000);
-
 
 /* 
 Script pour controler les volets 
@@ -225,4 +218,12 @@ function modeAuto(){
     }
 }
 
-window.setInterval(modeAuto,3000);
+
+// Events Listeners
+window.setInterval(()=>getStateLight(11),1000);
+window.setInterval(()=>getStateLight(13),1000);
+window.setInterval(()=>getStateBlind(12),1000);
+window.setInterval(()=>getStateBlind(32),1000);
+window.setInterval(()=>getLumiState(5),1000);
+window.setInterval(()=>changeLumi(),1000);
+window.setInterval(modeAuto,2000);
